@@ -16,11 +16,7 @@
  *******************************************************************************/
 package org.osc.core.broker.rest.server;
 
-import static org.osgi.service.http.whiteboard.HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_NAME;
-import static org.osgi.service.http.whiteboard.HttpWhiteboardConstants.HTTP_WHITEBOARD_CONTEXT_SELECT;
-import static org.osgi.service.http.whiteboard.HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_NAME;
-import static org.osgi.service.http.whiteboard.HttpWhiteboardConstants.HTTP_WHITEBOARD_SERVLET_PATTERN;
-import static org.osgi.service.http.whiteboard.HttpWhiteboardConstants.HTTP_WHITEBOARD_TARGET;
+import static org.osgi.service.http.whiteboard.HttpWhiteboardConstants.*;
 
 import java.io.IOException;
 
@@ -39,6 +35,7 @@ import org.osc.core.broker.rest.server.api.ApplianceApis;
 import org.osc.core.broker.rest.server.api.DistributedApplianceApis;
 import org.osc.core.broker.rest.server.api.DistributedApplianceInstanceApis;
 import org.osc.core.broker.rest.server.api.JobApis;
+import org.osc.core.broker.rest.server.api.KubernetesApis;
 import org.osc.core.broker.rest.server.api.ManagerApis;
 import org.osc.core.broker.rest.server.api.ManagerConnectorApis;
 import org.osc.core.broker.rest.server.api.ServerDebugApis;
@@ -62,7 +59,7 @@ import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 
         HTTP_WHITEBOARD_SERVLET_NAME + "=" + ApiServletContext.OSC_API_NAME, HTTP_WHITEBOARD_SERVLET_PATTERN + "=/*",
         HTTP_WHITEBOARD_CONTEXT_SELECT + "=(" + HTTP_WHITEBOARD_CONTEXT_NAME + "=" + ApiServletContext.OSC_API_NAME
-                + ")",
+        + ")",
         HTTP_WHITEBOARD_TARGET + "=(" + ApiServletContext.FELIX_HTTP_NAME + "=" + ApiServletContext.OSC_API_NAME + ")"
 
 })
@@ -95,6 +92,8 @@ public class ApiServletDelegate extends ResourceConfig implements Servlet {
     private VirtualSystemApis virtualSystemApis;
     @Reference
     private VirtualizationConnectorApis virtualizationConnectorApis;
+    @Reference
+    private KubernetesApis kubernetesApis;
 
     @Reference
     private OscAuthFilter oscAuthFilter;
@@ -128,7 +127,7 @@ public class ApiServletDelegate extends ResourceConfig implements Servlet {
         super.registerInstances(this.alarmApis, this.alertApis, this.applianceApis, this.distributedApplianceApis,
                 this.distributedApplianceInstanceApis, this.jobApis, this.managerApis, this.managerConnectorApis,
                 this.nsmMgrApis, this.serverDebugApis, this.serverMgmtApis, this.virtualSystemApis,
-                this.virtualizationConnectorApis);
+                this.virtualizationConnectorApis, this.kubernetesApis);
 
         this.container = new ServletContainer(this);
     }
