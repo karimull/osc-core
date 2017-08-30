@@ -47,6 +47,7 @@ public class KubernetesClient implements Closeable {
     @Override
     public void close() throws IOException {
         this.client.close();
+        this.client = null;
     }
 
     DefaultKubernetesClient getClient() {

@@ -82,26 +82,15 @@ public class KubernetesService implements KubernetesServiceApi {
             KubernetesPodApi kPod = new KubernetesPodApi(localClient);
             List<KubernetesPod> kPodList = kPod.getPodsByLabel(label);
             if (kPodList == null) {
-                return String.format("No pods found with the label %s. Null response.", label);
+            	result1 = String.format("No pods found with the label %s. Null response.", label);
             } else {
                 result1 = constructPodsString(kPodList);
             }
         }
 
-        try {
-            List<KubernetesPod> kPodList = this.api.getPodsByLabel(label);
-            if (kPodList == null) {
-                return String.format("No pods found with the label %s. Null response.", label);
-            } else {
-                result1.concat(constructPodsString(kPodList));
-            }
-        }catch (VmidcException e) {
-            throw e;
-        }
-
         return result1;
     }
-
+    
     @Override
     public String getPodsByLabels(String key, String commaSeparatedLabels) {
         return KubernetesExample.getPodByLabels(key, commaSeparatedLabels);
