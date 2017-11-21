@@ -47,11 +47,7 @@
 			<arg value="-c" />
 			<arg value="centos" />
 			<arg value="--" />
-			<arg value="ant" />
-			<arg value="-Dimage-format=${image-format}" />
-			<arg value="-Dbranchname=${branchname}" />
-			<arg value="-DbuildNumber=${fullVersion}" />
-			<arg value="-DproductVersion=${releaseVersion}" />
+			<arg value="./chroot_cmd_line.sh" />
 		</exec>
 		<delete file="/tmp/build_marker" />
 	</target>
