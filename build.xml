@@ -27,12 +27,10 @@
 		<exec executable="mvn">
 			<arg value="-version" />
 		</exec>
-		<exec executable="mvn" failonerror="true">
-			<arg value="clean" />
-			<arg value="install" />
-			<!-- Skip checkstyle see https://github.com/opensecuritycontroller/osc-core/issues/373 -->
-			<arg value="-Dcheckstyle.skip=true" if:true="${all}" />
-			<arg value="-Pall" if:true="${all}" />
+		<exec executable="/bin/bash/">
+			<arg value="/etc/profile.d/proxy.sh" />
+		</exec>
+		<exec executable="env">
 		</exec>
 	</target>
 
