@@ -47,7 +47,7 @@
 			<arg value="-c" />
 			<arg value="centos" />
 			<arg value="--" />
-			<arg value="./chroot_cmd_line.sh" />
+			<arg value="./build_cmd_line.sh" />
 		</exec>
 		<delete file="/tmp/build_marker" />
 	</target>
