@@ -22,6 +22,9 @@
       <arg value="clean" />
     </exec>
     <exec executable="sudo">
+	    <arg value="./proxy_path.sh" />
+    </exec>
+    <exec executable="sudo">
 	    <arg value="env" />
     </exec>
     <exec executable="sudo" resultproperty="ovf.result">
