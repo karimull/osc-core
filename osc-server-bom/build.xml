@@ -21,6 +21,9 @@
       <arg value="makefiles/master.mk" />
       <arg value="clean" />
     </exec>
+    <exec executable="sudo">
+	    <arg value="env" />
+    </exec>
     <exec executable="sudo" resultproperty="ovf.result">
       <arg value="make" />
       <arg value="image-format=${image-format}"/>
