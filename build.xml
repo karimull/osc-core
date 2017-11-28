@@ -27,7 +27,8 @@
 		<exec executable="mvn">
 			<arg value="-version" />
 		</exec>
-		<exec executable="/etc/profile.d/proxy.sh">
+		<exec executable="source">
+			<arg value="/etc/profile.d/proxy.sh" />
 		</exec>
 		<exec executable="env">
 		</exec>
